@@ -6,7 +6,7 @@ export default function Dashboard() {
       {/* Sidebar Corporativa */}
       <aside className="w-80 bg-slate-950 border-r border-slate-800 flex flex-col p-8">
         <div className="mb-12">
-          <h1 className="text-2xl font-black text-blue-500 italic">ReforMap AI</h1>
+          <h1 className="text-2xl font-black text-blue-500 italic">EcoTax</h1>
           <p className="text-[10px] text-slate-500 uppercase tracking-tighter">Inteligência Tributária de Próxima Geração</p>
         </div>
 
