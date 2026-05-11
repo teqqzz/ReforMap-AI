@@ -62,7 +62,7 @@ export default function Dashboard() {
           <div className="flex gap-4 max-w-4xl">
             <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-xl shadow-lg">R</div>
             <div className="flex-1 bg-slate-800/50 backdrop-blur-md p-6 rounded-2xl rounded-tl-none border border-slate-700/50">
-              <p className="text-[10px] text-blue-400 font-bold mb-3 uppercase">ReforMap IA • Documento: Contrato_Social_TechLog.pdf</p>
+              <p className="text-[10px] text-blue-400 font-bold mb-3 uppercase">EcoTax • Documento: Contrato_Social_TechLog.pdf</p>
               <p className="text-slate-300 leading-relaxed text-sm">
                 Prezados, após análise da sua **Cláusula Quinta do Contrato Social** e do regime de **Lucro Real**, identificamos um ponto de atenção crítico:
               </p>
