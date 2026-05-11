@@ -34,7 +34,7 @@ export default function Cadastro() {
         {/* Header Profissional */}
         <div className="bg-slate-900 p-10 text-white flex justify-between items-end">
           <div>
-            <h1 className="text-4xl font-black italic tracking-tighter text-blue-500">ReforMap AI</h1>
+            <h1 className="text-4xl font-black italic tracking-tighter text-blue-500">EcoTax</h1>
             <p className="text-slate-400 mt-2 text-xs uppercase tracking-[0.3em] font-bold">Onboarding Estrutural v1.0</p>
           </div>
           <div className="text-right border-l border-slate-700 pl-6">
