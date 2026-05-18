@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Cadastro() {
+  const router = useRouter();
   const [cnpj, setCnpj] = useState('');
-  // Estado para os campos que a API preenche automaticamente
+  
   const [dadosEmpresa, setDadosEmpresa] = useState({
     razaoSocial: '',
     naturezaJuridica: '',
@@ -10,7 +12,6 @@ export default function Cadastro() {
     dataAbertura: ''
   });
 
-  // Simulação de preenchimento via API de CNPJ
   const handleCnpjChange = (e) => {
     const value = e.target.value;
     setCnpj(value);
@@ -25,6 +26,12 @@ export default function Cadastro() {
     } else {
       setDadosEmpresa({ razaoSocial: '', naturezaJuridica: '', endereco: '', dataAbertura: '' });
     }
+  };
+
+  // Força o redirecionamento imediato para a tela de Login ao submeter
+  const handleFinalizarCadastro = (e) => {
+    e.preventDefault();
+    router.push('/');
   };
 
   return (
@@ -43,7 +50,7 @@ export default function Cadastro() {
           </div>
         </div>
 
-        <form className="p-12 space-y-12">
+        <form onSubmit={handleFinalizarCadastro} className="p-12 space-y-12">
           
           {/* SEÇÃO 1: IDENTIFICAÇÃO E API CNPJ */}
           <section className="space-y-6">
@@ -114,31 +121,26 @@ export default function Cadastro() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Campo: Declaração do Imposto de Renda */}
               <div className="p-6 bg-slate-900 rounded-3xl border border-slate-800 shadow-xl">
                 <label className="text-[10px] font-black text-blue-400 uppercase block mb-4">Declaração do Imposto de Renda</label>
                 <input type="file" className="text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-black file:bg-blue-600 file:text-white" />
               </div>
               
-              {/* Campo: Contrato Social */}
               <div className="p-6 bg-slate-900 rounded-3xl border border-slate-800 shadow-xl">
                 <label className="text-[10px] font-black text-blue-400 uppercase block mb-4">Contrato Social</label>
                 <input type="file" className="text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-black file:bg-blue-600 file:text-white" />
               </div>
 
-              {/* Campo: IR Contrato e Cartão */}
               <div className="p-6 bg-slate-900 rounded-3xl border border-slate-800 shadow-xl">
                 <label className="text-[10px] font-black text-blue-400 uppercase block mb-4">IR Contrato e Cartão (Consolidado)</label>
                 <input type="file" className="text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-black file:bg-blue-600 file:text-white" />
               </div>
 
-              {/* Campo: Foto do Sócio ou Dono */}
               <div className="p-6 bg-slate-100 rounded-3xl border border-slate-200">
                 <label className="text-[10px] font-black text-slate-500 uppercase block mb-4">Documento com foto (Sócio ou Dono)</label>
                 <input type="file" className="text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-black file:bg-slate-700 file:text-white" />
               </div>
 
-              {/* Campo: Anexos Específicos */}
               <div className="p-6 bg-slate-100 rounded-3xl border border-slate-200 lg:col-span-2">
                 <label className="text-[10px] font-black text-slate-500 uppercase block mb-4">Anexos para campos específicos</label>
                 <input type="file" multiple className="text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-black file:bg-slate-700 file:text-white" />
@@ -146,9 +148,9 @@ export default function Cadastro() {
             </div>
           </section>
 
-          {/* Botão de Finalização */}
+          {/* Botão de Finalização com redirecionamento acionado pelo onSubmit */}
           <div className="pt-10">
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-6 rounded-3xl transition-all shadow-2xl uppercase tracking-[0.2em] text-sm">
+            <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-6 rounded-3xl transition-all shadow-2xl uppercase tracking-[0.2em] text-sm">
               Finalizar e Analisar Impacto
             </button>
           </div>
