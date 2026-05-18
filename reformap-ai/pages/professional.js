@@ -15,19 +15,34 @@ export default function DashboardProfessional() {
             <h3 className="text-[10px] font-black text-slate-500 uppercase mb-3">Empresa Monitorada</h3>
             <p className="text-sm font-bold text-white">TechLog Soluções</p>
             <div className="mt-3 flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              <span className="text-[10px] text-slate-400 font-bold uppercase">Análise em Dia</span>
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              <span className="text-[10px] text-slate-400 font-bold uppercase">Monitoramento RAG Ativo</span>
             </div>
           </section>
 
           <section>
             <h3 className="text-[10px] font-black text-slate-500 uppercase mb-3">Créditos de IA</h3>
             <div className="flex justify-between text-xs mb-2 font-mono">
-              <span>Saldo Mensal</span>
-              <span className="text-blue-400">450 / 500</span>
+              <span className="text-slate-400">Saldo Premium</span>
+              <span className="text-blue-400 font-bold">450 / 500</span>
             </div>
             <div className="w-full bg-slate-800 h-1.5 rounded-full">
               <div className="bg-blue-600 h-full w-[90%] rounded-full shadow-[0_0_15px_rgba(37,99,235,0.4)]"></div>
+            </div>
+          </section>
+
+          {/* COMPLEMENTO: LISTA DE ARQUIVOS ADICIONADOS PARA A IA LER */}
+          <section className="space-y-3">
+            <p className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Dossiê Processado (RAG) 📂</p>
+            <div className="space-y-2">
+              <div className="p-2.5 bg-slate-900 rounded-lg text-[10px] flex justify-between items-center border border-slate-800">
+                <span>📄 Contrato_Social_TechLog.pdf</span>
+                <span className="text-green-500 font-bold">Sincronizado</span>
+              </div>
+              <div className="p-2.5 bg-slate-900 rounded-lg text-[10px] flex justify-between items-center border border-slate-800">
+                <span>📄 Declaracao_IRPJ_2025.pdf</span>
+                <span className="text-green-500 font-bold">Sincronizado</span>
+              </div>
             </div>
           </section>
         </div>
@@ -45,7 +60,7 @@ export default function DashboardProfessional() {
         <header className="h-20 border-b border-slate-800 flex items-center justify-between px-10 bg-slate-900/50 backdrop-blur-md">
           <div>
             <h2 className="font-black text-slate-300 italic">Painel de Consultoria IA (RAG)</h2>
-            <p className="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Processamento via Claude 3.5 Sonnet</p>
+            <p className="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Processamento Avançado de Dados Fiscais</p>
           </div>
           <div className="flex gap-4">
             <button className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-[10px] font-black uppercase hover:bg-slate-700 transition">Gerar Relatório Anual</button>
@@ -57,18 +72,18 @@ export default function DashboardProfessional() {
           <div className="flex gap-4 max-w-4xl">
             <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-black text-xl shadow-2xl">R</div>
             <div className="flex-1 bg-slate-800/60 p-8 rounded-3xl rounded-tl-none border border-slate-700 shadow-xl">
-              <p className="text-[10px] text-blue-400 font-black mb-4 uppercase tracking-widest">Análise de Impacto • Reforma 2026</p>
+              <p className="text-[10px] text-blue-400 font-black mb-4 uppercase tracking-widest">Análise de Impacto Avançada • Reforma 2026</p>
               <p className="text-slate-200 leading-relaxed text-sm font-medium">
-                Com base nos seus **Créditos de PIS/COFINS** e no faturamento médio do setor logístico, a transição para o **IVA Dual** exigirá uma reestruturação do seu fluxo de caixa no 1º trimestre de 2026.
+                Com base na leitura do seu **Contrato Social** e do regime de **Lucro Real**, identificamos que a transição para o **IVA Dual** exigirá uma reestruturação imediata nas suas operações logísticas para Curitiba e região para aproveitar os créditos de CBS.
               </p>
               <div className="mt-6 grid grid-cols-2 gap-4">
                 <div className="p-4 bg-slate-900 rounded-xl border border-slate-700">
-                   <p className="text-[10px] text-slate-500 font-bold uppercase">Impacto Médio</p>
+                   <p className="text-[10px] text-slate-500 font-bold uppercase">Aumento de Carga Estimado</p>
                    <p className="text-xl font-black text-red-500">+4.1%</p>
                 </div>
                 <div className="p-4 bg-slate-900 rounded-xl border border-slate-700">
-                   <p className="text-[10px] text-slate-500 font-bold uppercase">Sugestão</p>
-                   <p className="text-xs font-bold text-blue-400">Revisão de Créditos Acumulados</p>
+                   <p className="text-[10px] text-slate-500 font-bold uppercase">Motor de Decisão</p>
+                   <p className="text-xs font-bold text-blue-400">Claude 3.5 Sonnet Ativo</p>
                 </div>
               </div>
             </div>
@@ -78,8 +93,8 @@ export default function DashboardProfessional() {
         {/* Campo de Input Profissional */}
         <div className="p-8 bg-slate-950 border-t border-slate-800">
           <div className="max-w-4xl mx-auto relative group">
-            <input type="text" className="w-full bg-slate-900 border border-slate-800 p-5 rounded-2xl pr-32 outline-none focus:ring-2 focus:ring-blue-600 text-sm transition font-medium" placeholder="Pergunte sobre créditos de combustível ou novas alíquotas do CBS..." />
-            <button className="absolute right-3 top-3 bottom-3 bg-blue-600 hover:bg-blue-500 px-6 rounded-xl font-black text-[10px] uppercase tracking-widest transition shadow-lg">Enviar</button>
+            <input type="text" className="w-full bg-slate-900 border border-slate-800 p-5 rounded-2xl pr-32 outline-none focus:ring-2 focus:ring-blue-600 text-sm transition font-medium text-white" placeholder="Peça para analisar cláusulas contratuais ou calcular impacto nas rotas..." />
+            <button className="absolute right-3 top-3 bottom-3 bg-blue-600 hover:bg-blue-500 px-6 rounded-xl font-black text-[10px] uppercase tracking-widest transition shadow-lg">Consultar IA</button>
           </div>
         </div>
       </main>
