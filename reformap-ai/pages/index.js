@@ -13,90 +13,118 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-slate-950 flex flex-col items-center justify-center p-6 font-sans">
-      
-      <div className="w-full max-w-md bg-slate-900/50 backdrop-blur-xl p-10 rounded-3xl border border-slate-800 shadow-2xl space-y-8">
-        {/* Header do Logotipo */}
-        <div className="text-center">
-          <h1 className="text-4xl font-black text-blue-500 italic tracking-tighter">EcoTax</h1>
-          <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mt-2 font-bold">Portal de Autenticação Segura</p>
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-8 font-sans">
+      <div className="w-full max-w-6xl bg-white shadow-2xl rounded-3xl overflow-hidden border border-slate-200">
+        
+        {/* Header Profissional - IDÊNTICO AO DE CADASTRO */}
+        <div className="bg-slate-900 p-10 text-white flex justify-between items-end">
+          <div>
+            <h1 className="text-4xl font-black italic tracking-tighter text-blue-500">EcoTax</h1>
+            <p className="text-slate-400 mt-2 text-xs uppercase tracking-[0.3em] font-bold">Portal de Autenticação Corporativa</p>
+          </div>
+          <div className="text-right border-l border-slate-700 pl-6">
+            <p className="text-[10px] text-slate-500 uppercase font-bold">Controle de Acesso v1.2</p>
+            <p className="text-sm font-mono text-blue-400">Sessão Protegida</p>
+          </div>
         </div>
 
-        {/* Formulário Simulado */}
-        <form onSubmit={handleLoginRegular} className="space-y-6">
-          <div>
-            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2">E-mail Corporativo</label>
-            <input 
-              type="email" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="nome@empresa.com" 
-              className="w-full bg-slate-950 border border-slate-800 p-4 rounded-xl text-sm text-white outline-none focus:ring-2 focus:ring-blue-600 transition"
-            />
-          </div>
-
-          <div>
-            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2">Chave de Acesso</label>
-            <input 
-              type="password" 
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              placeholder="••••••••" 
-              className="w-full bg-slate-950 border border-slate-800 p-4 rounded-xl text-sm text-white outline-none focus:ring-2 focus:ring-blue-600 transition"
-            />
-          </div>
-
-          <button type="submit" className="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-xl text-xs uppercase tracking-widest transition shadow-lg">
-            Entrar no Painel
-          </button>
-        </form>
-
-        {/* Divisor Técnico */}
-        <div className="relative flex items-center justify-center py-2">
-          <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-slate-800"></div></div>
-          <span className="relative bg-slate-900 px-4 text-[9px] font-black text-blue-400 uppercase tracking-widest">Ambiente de Demonstração</span>
-        </div>
-
-        {/* Seletores Rápidos de Perfil de Custo / Planos */}
-        <div className="space-y-3">
-          <p className="text-center text-[10px] font-bold text-slate-500 uppercase">Selecione o Plano para Simulação:</p>
+        {/* Corpo do Formulário - Seguindo o espaçamento e estilo do cadastro */}
+        <div className="p-12 space-y-12">
           
-          <div className="grid grid-cols-1 gap-2">
-            <button 
-              onClick={() => router.push('/starter')}
-              className="w-full bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 text-blue-400 p-3 rounded-xl text-xs font-bold text-left flex justify-between items-center transition"
-            >
-              <span>1. Plano Starter (Freemium)</span>
-              <span className="text-[9px] bg-blue-500/20 px-2 py-0.5 rounded text-blue-300">Acesso Grátis</span>
-            </button>
+          {/* SEÇÃO 1: LOGIN REGULAR */}
+          <section className="space-y-6">
+            <div className="flex items-center gap-4">
+              <span className="bg-slate-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+              <h2 className="text-lg font-black text-slate-800 uppercase tracking-tight">Acesso Restrito</h2>
+            </div>
+            
+            <form onSubmit={handleLoginRegular} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <label className="text-[10px] font-black text-slate-500 uppercase block mb-2">E-mail Corporativo</label>
+                <input 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="nome@empresa.com" 
+                  className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm text-slate-900 outline-none focus:ring-2 focus:ring-blue-500 transition font-medium"
+                />
+              </div>
 
-            <button 
-              onClick={() => router.push('/professional')}
-              className="w-full bg-purple-600/10 hover:bg-purple-600/20 border border-purple-500/30 text-purple-400 p-3 rounded-xl text-xs font-bold text-left flex justify-between items-center transition"
-            >
-              <span>2. Plano Professional (Corporate)</span>
-              <span className="text-[9px] bg-purple-500/20 px-2 py-0.5 rounded text-purple-300">Risco Dinâmico</span>
-            </button>
+              <div>
+                <label className="text-[10px] font-black text-slate-500 uppercase block mb-2">Chave de Acesso (Senha)</label>
+                <input 
+                  type="password" 
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                  placeholder="••••••••" 
+                  className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm text-slate-900 outline-none focus:ring-2 focus:ring-blue-500 transition font-medium"
+                />
+                <button type="button" className="text-[10px] text-blue-600 hover:underline mt-2 font-bold uppercase tracking-tighter">Esqueci minha Chave</button>
+              </div>
 
-            <button 
-              onClick={() => router.push('/partner')}
-              className="w-full bg-emerald-600/10 hover:bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 p-3 rounded-xl text-xs font-bold text-left flex justify-between items-center transition"
-            >
-              <span>3. Plano Partner (B2B2B)</span>
-              <span className="text-[9px] bg-emerald-500/20 px-2 py-0.5 rounded text-emerald-300">White-Label</span>
-            </button>
+              <div className="md:col-span-2 pt-4">
+                <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-6 rounded-3xl transition-all shadow-2xl uppercase tracking-[0.2em] text-sm">
+                  Entrar no Painel EcoTax
+                </button>
+              </div>
+            </form>
+          </section>
+
+          {/* SEÇÃO 2: ACESSO RÁPIDO DE DEMONSTRAÇÃO (Integração Limpa) */}
+          <section className="space-y-6 pt-6 border-t border-slate-100">
+            <div className="flex items-center gap-4">
+              <span className="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+              <h2 className="text-lg font-black text-slate-800 uppercase tracking-tight">Simulação de Perfil de Custo (Acesso Rápido)</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <button 
+                onClick={() => router.push('/starter')}
+                className="bg-white hover:bg-slate-50 border border-slate-200 p-6 rounded-3xl flex flex-col items-center justify-center text-center transition shadow-lg group"
+              >
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition">
+                   <span className="text-blue-600 text-xl font-bold">1</span>
+                </div>
+                <p className="text-xs font-black text-slate-900 uppercase">Plano Starter</p>
+                <p className="text-[10px] text-blue-600 font-bold mt-1">(Degustação Freemium)</p>
+              </button>
+
+              <button 
+                onClick={() => router.push('/professional')}
+                className="bg-white hover:bg-slate-50 border border-slate-200 p-6 rounded-3xl flex flex-col items-center justify-center text-center transition shadow-lg group"
+              >
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-200 transition">
+                   <span className="text-purple-600 text-xl font-bold">2</span>
+                </div>
+                <p className="text-xs font-black text-slate-900 uppercase">Plano Professional</p>
+                <p className="text-[10px] text-purple-600 font-bold mt-1">(Pricing Dinâmico)</p>
+              </button>
+
+              <button 
+                onClick={() => router.push('/partner')}
+                className="bg-white hover:bg-slate-50 border border-slate-200 p-6 rounded-3xl flex flex-col items-center justify-center text-center transition shadow-lg group"
+              >
+                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-emerald-200 transition">
+                   <span className="text-emerald-600 text-xl font-bold">3</span>
+                </div>
+                <p className="text-xs font-black text-slate-900 uppercase">Plano Partner</p>
+                <p className="text-[10px] text-emerald-600 font-bold mt-1">(White-Label B2B2B)</p>
+              </button>
+            </div>
+          </section>
+
+          {/* Link para Cadastro */}
+          <div className="text-center pt-10 border-t border-slate-100">
+            <p className="text-sm text-slate-600 font-medium">
+              Nova empresa ou escritório?{' '}
+              <button onClick={() => router.push('/cadastro')} className="text-blue-500 hover:underline font-black uppercase text-xs tracking-wider">
+                Criar Conta Estrutural
+              </button>
+            </p>
           </div>
+
         </div>
-
-        {/* Link para o fluxo de cadastro caso queira demonstrar do zero */}
-        <p className="text-center text-xs text-slate-500 font-medium">
-          Nova empresa?{' '}
-          <button onClick={() => router.push('/cadastro')} className="text-blue-500 hover:underline font-bold">
-            Criar Conta Estrutural
-          </button>
-        </p>
       </div>
-
     </div>
   );
 }
