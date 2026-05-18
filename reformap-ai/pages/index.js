@@ -8,7 +8,11 @@ export default function Login() {
 
   const handleLoginRegular = (e) => {
     e.preventDefault();
-    // Login padrão redireciona para o fluxo inicial do Starter
+    if (!email || !senha) {
+      alert("Por favor, preencha as credenciais de acesso corporativo.");
+      return;
+    }
+    // Encaminha por padrão para o Starter para validação
     router.push('/starter');
   };
 
@@ -16,7 +20,7 @@ export default function Login() {
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-8 font-sans">
       <div className="w-full max-w-6xl bg-white shadow-2xl rounded-3xl overflow-hidden border border-slate-200">
         
-        {/* Header Profissional - IDÊNTICO AO DE CADASTRO */}
+        {/* Header Profissional */}
         <div className="bg-slate-900 p-10 text-white flex justify-between items-end">
           <div>
             <h1 className="text-4xl font-black italic tracking-tighter text-blue-500">EcoTax</h1>
@@ -28,7 +32,6 @@ export default function Login() {
           </div>
         </div>
 
-        {/* Corpo do Formulário - Seguindo o espaçamento e estilo do cadastro */}
         <div className="p-12 space-y-12">
           
           {/* SEÇÃO 1: LOGIN REGULAR */}
@@ -59,7 +62,6 @@ export default function Login() {
                   placeholder="••••••••" 
                   className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm text-slate-900 outline-none focus:ring-2 focus:ring-blue-500 transition font-medium"
                 />
-                <button type="button" className="text-[10px] text-blue-600 hover:underline mt-2 font-bold uppercase tracking-tighter">Esqueci minha Chave</button>
               </div>
 
               <div className="md:col-span-2 pt-4">
@@ -70,7 +72,7 @@ export default function Login() {
             </form>
           </section>
 
-          {/* SEÇÃO 2: ACESSO RÁPIDO DE DEMONSTRAÇÃO (Integração Limpa) */}
+          {/* SEÇÃO 2: ACESSO RÁPIDO DE DEMONSTRAÇÃO */}
           <section className="space-y-6 pt-6 border-t border-slate-100">
             <div className="flex items-center gap-4">
               <span className="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">2</span>
@@ -113,12 +115,15 @@ export default function Login() {
             </div>
           </section>
 
-          {/* Link para Cadastro */}
+          {/* LINK DE CADASTRE-SE PEDIDO */}
           <div className="text-center pt-10 border-t border-slate-100">
             <p className="text-sm text-slate-600 font-medium">
-              Nova empresa ou escritório?{' '}
-              <button onClick={() => router.push('/cadastro')} className="text-blue-500 hover:underline font-black uppercase text-xs tracking-wider">
-                Criar Conta Estrutural
+              Não possui uma conta?{' '}
+              <button 
+                onClick={() => router.push('/cadastro')} 
+                className="bg-slate-100 hover:bg-slate-200 text-blue-600 font-black px-4 py-2 rounded-xl text-xs uppercase tracking-wider ml-2 transition"
+              >
+                Cadastre-se Aqui
               </button>
             </p>
           </div>

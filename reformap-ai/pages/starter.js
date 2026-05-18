@@ -1,132 +1,137 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function DashboardStarter() {
+  const router = useRouter();
+  const [saldo, setSaldo] = useState(12);
+  const [mensagens, setMensagens] = useState([
+    { de: 'ia', texto: 'Olá! Identifiquei seu CNAE de Transporte Rodoviário via BrasilAPI. Posso tirar dúvidas institucionais básicas sobre a CBS para o seu segmento. Como posso ajudar?' }
+  ]);
+  const [inputChat, setInputChat] = useState('');
+
+  const enviarMensagem = () => {
+    if (!inputChat.trim()) return;
+    if (saldo <= 0) {
+      alert("Seu saldo de degustação esgotou! Realize o upgrade para continuar consultando a IA.");
+      return;
+    }
+    
+    const novasMensagens = [
+      ...mensagens,
+      { de: 'usuario', texto: inputChat },
+      { de: 'ia', texto: `[Modo Starter Ativo] Análise simplificada processada. Para cruzamento profundo de dados contratuais e geração de relatórios oficiais estruturados, migre para a licença corporativa.` }
+    ];
+    
+    setMensagens(novasMensagens);
+    setSaldo(saldo - 1);
+    setInputChat('');
+  };
+
   return (
     <div className="flex h-screen bg-slate-900 text-slate-100 overflow-hidden font-sans">
-      {/* Sidebar Starter */}
       <aside className="w-80 bg-slate-950 border-r border-slate-800 flex flex-col p-8">
         <div className="mb-12">
           <h1 className="text-2xl font-black text-blue-500 italic">EcoTax</h1>
-          <p className="text-[10px] text-slate-500 uppercase tracking-tighter">Versão Gratuita de Demonstração</p>
+          <p className="text-[10px] text-slate-500 uppercase tracking-tighter">Versão de Demonstração Activa</p>
         </div>
 
         <div className="space-y-8 flex-1 overflow-y-auto">
-          {/* SEÇÃO DO SALDO NORMAL PEDIDA */}
           <section className="bg-blue-900/10 border border-blue-500/20 p-4 rounded-xl">
             <h3 className="text-[10px] font-black text-blue-400 uppercase mb-3 tracking-widest">Controle de Saldo</h3>
             <div className="flex justify-between text-xs mb-2">
-              <span className="text-slate-400">Créditos de Degustação</span>
-              <span className="font-bold text-white">12 / 50</span>
+              <span className="text-slate-400">Degustação Base</span>
+              <span className="font-bold text-white">{saldo} / 50</span>
             </div>
             <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-              <div className="bg-blue-500 h-full w-[24%] rounded-full shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+              <div className="bg-blue-500 h-full rounded-full transition-all duration-300" style={{ width: `${(saldo / 50) * 100}%` }}></div>
             </div>
-            <p className="text-[9px] text-slate-500 mt-2 italic">Cada consulta básica consome 1 crédito.</p>
+            <button onClick={() => alert("Redirecionando para checkout de recarga externa...")} className="w-full mt-4 bg-blue-600 py-2 rounded-lg text-[10px] font-black uppercase hover:bg-blue-500 transition shadow-lg">Comprar Mais Créditos</button>
           </section>
 
-          <nav className="space-y-4">
-            <p className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Recursos Bloqueadosn(Plano Pro) 🔒</p>
-            <div className="space-y-2 opacity-60">
-              {['Upload de IRPJ Completo', 'Relatórios Fiscais em PDF', 'Suporte Jurídico 24h'].map((item) => (
-                <div key={item} className="p-3 bg-slate-900/50 rounded-lg text-[10px] border border-slate-800 font-medium">
-                  {item}
-                </div>
-              ))}
-            </div>
+          <nav className="space-y-2">
+            <p className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Recursos Travados (Pro) 🔒</p>
+            {['Simulador de Alíquotas Complexas', 'Varredura RAG Completa', 'Auditoria Digital de IRPJ'].map((rec) => (
+              <div key={rec} className="p-3 bg-slate-900/50 border border-slate-800 text-[10px] rounded-xl italic text-slate-500 flex justify-between items-center">
+                {rec} <span>🔒</span>
+              </div>
+            ))}
           </nav>
         </div>
+
+        <button onClick={() => router.push('/')} className="w-full bg-slate-800 hover:bg-red-900/30 hover:text-red-400 p-3 rounded-lg text-xs font-bold transition">Sair da Plataforma</button>
       </aside>
 
       <main className="flex-1 flex flex-col overflow-y-auto">
-        <div className="bg-gradient-to-r from-blue-700 to-indigo-800 p-3 text-center">
-          <p className="text-[10px] font-black uppercase tracking-widest text-white">Ambiente de Testes Automatizado via BrasilAPI</p>
+        <div className="bg-gradient-to-r from-blue-700 to-indigo-800 p-3 text-center text-[10px] font-black uppercase tracking-widest">
+          Você está utilizando o Plano Starter. Conheça as estimativas corporativas abaixo.
         </div>
 
-        <div className="p-10 space-y-10 max-w-6xl w-full mx-auto">
-          <header>
-            <h2 className="text-3xl font-black italic tracking-tighter">Painel de Degustação Starter</h2>
-            <p className="text-xs text-slate-500 mt-1">Experimente nossa inteligência antes de migrar para a automação total.</p>
+        <div className="p-10 space-y-10 max-w-5xl w-full mx-auto">
+          <header className="flex justify-between items-center">
+            <div>
+              <h2 className="text-3xl font-black italic tracking-tighter">Diagnóstico Simplificado</h2>
+              <p className="text-xs text-slate-500 mt-1 uppercase font-bold tracking-widest">TechLog Soluções • Perfil Logístico Basal</p>
+            </div>
           </header>
 
-          {/* GRID: DADOS BÁSICOS DA EMPRESA */}
-          <div className="bg-slate-800/30 p-6 rounded-3xl border border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-2">Empresa Ativa (TechLog)</h4>
-              <p className="text-lg font-black text-white">TechLog Soluções Logísticas</p>
-              <p className="text-xs text-slate-400 mt-1">CNAE extraído automaticamente do banco público.</p>
-            </div>
-            <div className="bg-slate-950/50 p-4 rounded-xl border border-slate-800 flex justify-between items-center">
-              <div>
-                <p className="text-[10px] text-slate-500 uppercase font-bold">Status de Documentação</p>
-                <p className="text-xs text-amber-500 font-bold mt-1">Aguardando Contrato Social</p>
-              </div>
-              <span className="text-xl">📄</span>
-            </div>
-          </div>
-
-          {/* CHAT INTEGRADO DE DEGUSTAÇÃO FUNCIONAL */}
-          <div className="bg-slate-950 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl">
+          {/* CHAT INTEGRADO DE TESTE */}
+          <div className="bg-slate-950 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl flex flex-col h-80">
             <div className="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
-              <span className="text-xs font-black uppercase tracking-wider text-blue-400">Chat de Demonstração (IA Básica)</span>
-              <span className="text-[9px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded font-bold uppercase">Consome Crédito</span>
+              <span className="text-xs font-black uppercase text-blue-400 tracking-wider">Mecanismo de Teste de Mensagem</span>
             </div>
-            <div className="p-6 space-y-4 min-h-[150px]">
-              <div className="flex gap-3 max-w-xl">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black text-sm">E</div>
-                <div className="bg-slate-900 p-4 rounded-2xl rounded-tl-none border border-slate-800 text-xs text-slate-300 leading-relaxed">
-                  Olá! Identifiquei que a sua empresa atua no setor de **Transporte Rodoviário**. No plano Starter, posso tirar dúvidas gerais sobre as alíquotas base da CBS para 2026. Como posso ajudar?
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+              {mensagens.map((msg, i) => (
+                <div key={i} className={`flex gap-3 max-w-2xl ${msg.de === 'usuario' ? 'ml-auto flex-row-reverse' : ''}`}>
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm ${msg.de === 'usuario' ? 'bg-slate-700' : 'bg-blue-600'}`}>
+                    {msg.de === 'usuario' ? 'U' : 'E'}
+                  </div>
+                  <div className={`p-4 rounded-2xl text-xs border leading-relaxed ${msg.de === 'usuario' ? 'bg-blue-600/20 border-blue-500/30' : 'bg-slate-900 border-slate-800 text-slate-300'}`}>
+                    {msg.texto}
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
             <div className="p-4 bg-slate-900/50 border-t border-slate-800 flex gap-2">
-              <input type="text" placeholder="Digite sua dúvida fiscal básica aqui..." className="flex-1 bg-slate-950 border border-slate-800 p-3 rounded-xl text-xs outline-none focus:ring-1 focus:ring-blue-500" />
-              <button className="bg-blue-600 text-white font-bold text-xs px-4 rounded-xl uppercase">Enviar</button>
+              <input 
+                type="text" 
+                value={inputChat}
+                onChange={(e) => setInputChat(e.target.value)}
+                placeholder="Pergunte algo simples sobre as diretrizes gerais do IVA..." 
+                className="flex-1 bg-slate-950 border border-slate-800 p-3 rounded-xl text-xs outline-none focus:ring-1 focus:ring-blue-500 text-white" 
+              />
+              <button onClick={enviarMensagem} className="bg-blue-600 hover:bg-blue-500 font-bold text-xs px-4 rounded-xl uppercase transition">Enviar</button>
             </div>
           </div>
 
-          {/* SEÇÃO PEDIDA: ESTIMATIVA E VALORES DOS PLANOS COM BOTÃO ASSINAR */}
-          <section className="space-y-6 pt-4">
-            <h3 className="text-sm font-black uppercase tracking-wider text-slate-400">Tabela de Estimativas para Upgrade</h3>
-            
+          {/* SEÇÃO DE ESTIMATIVAS DE VALORES E PLANOS */}
+          <section className="space-y-6">
+            <h3 className="text-sm font-black text-slate-400 uppercase tracking-wider">Estimativa de Valores e Planos Superiores</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Card Professional */}
-              <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 flex flex-col justify-between shadow-xl hover:border-blue-500/50 transition">
+              
+              <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 flex flex-col justify-between shadow-xl">
                 <div>
-                  <div className="flex justify-between items-start">
-                    <span className="text-xs font-black text-blue-400 uppercase tracking-widest">Plano Professional</span>
-                    <span className="text-xs font-mono text-white font-bold">Sob Consulta</span>
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-black text-purple-400 uppercase tracking-widest">Professional</span>
+                    <span className="text-xs font-mono font-bold text-white">Preço Dinâmico</span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-3 leading-relaxed">
-                    Ideal para a **TechLog**. O valor é calculado de forma dinâmica baseado no seu número de funcionários e complexidade fiscal do CNAE.
-                  </p>
-                  <ul className="mt-4 space-y-2 text-[10px] text-slate-500">
-                    <li>• Chat Consultivo Ilimitado via Claude/Gemini</li>
-                    <li>• Leitura completa de Contrato Social e IRPJ via RAG</li>
-                  </ul>
+                  <p className="text-[11px] text-slate-400 mt-2 leading-relaxed">Acesso irrestrito ao chat estruturado e análise completa de múltiplos PDFs fiscais de alta volumetria.</p>
                 </div>
-                <button className="w-full mt-6 bg-blue-600 hover:bg-blue-500 text-white font-black py-3 rounded-xl text-xs uppercase tracking-widest transition">Assinar Professional</button>
+                <button onClick={() => { alert("Contratando Plano Professional... Redirecionando."); router.push('/professional'); }} className="w-full mt-6 bg-blue-600 hover:bg-blue-500 text-white font-black py-3 rounded-xl text-xs uppercase tracking-widest transition">Assinar Professional</button>
               </div>
 
-              {/* Card Partner */}
-              <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 flex flex-col justify-between shadow-xl hover:border-emerald-500/50 transition">
+              <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 flex flex-col justify-between shadow-xl">
                 <div>
-                  <div className="flex justify-between items-start">
-                    <span className="text-xs font-black text-emerald-400 uppercase tracking-widest">Plano Partner (B2B2B)</span>
-                    <span className="text-xs font-mono text-white font-bold">R$ 1.450,00<span className="text-[9px] text-slate-500">/mês</span></span>
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-black text-emerald-400 uppercase tracking-widest">Partner B2B2B</span>
+                    <span className="text-xs font-mono font-bold text-white">R$ 1.450,00/mês</span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-3 leading-relaxed">
-                    Para escritórios de contabilidade. Permite gerenciar múltiplos CNPJs sob a sua própria identidade de marca (White-Label).
-                  </p>
-                  <ul className="mt-4 space-y-2 text-[10px] text-slate-500">
-                    <li>• Painel Multi-Client de alta performance</li>
-                    <li>• Customização completa de logotipo e cores</li>
-                  </ul>
+                  <p className="text-[11px] text-slate-400 mt-2 leading-relaxed">Licenciamento White-label completo para escritórios contábeis distribuírem inteligência em lote.</p>
                 </div>
-                <button className="w-full mt-6 bg-emerald-600 hover:bg-emerald-500 text-white font-black py-3 rounded-xl text-xs uppercase tracking-widest transition">Assinar Partner</button>
+                <button onClick={() => { alert("Contratando Plano Partner... Redirecionando."); router.push('/partner'); }} className="w-full mt-6 bg-emerald-600 hover:bg-emerald-500 text-white font-black py-3 rounded-xl text-xs uppercase tracking-widest transition">Assinar Partner</button>
               </div>
+
             </div>
           </section>
-
         </div>
       </main>
     </div>
